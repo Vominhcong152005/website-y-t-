@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chẩn đoán bệnh</title>
+<style>
+  body { font-family: Arial, sans-serif; }
+  .container { width: 90%; margin: auto; padding: 20px; }
+  input { width: 90%; padding: 10px; margin: auto; text-align: center; }
+  button {width: 30%; margin:auto; padding: 5px; color: rgb(255, 255, 255); background-color: rgba(3, 238, 255, 0.993); font-size: large; text-align: center;}
+    td, th {
+        text-align: left;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+  }
+  table {
+    border: 1px solid black; 
+    border-collapse: collapse; 
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  B {
+    text-align: left;
+    font-size: large;
+  }
+</style>
+</head>
+<body>
+    <img src="https://scontent.fthd2-1.fna.fbcdn.net/v/t39.30808-6/448045378_969288325197210_6096399406716556112_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=5f2048&_nc_ohc=ulMcRL1d0X0Q7kNvgGIzO-V&_nc_ht=scontent.fthd2-1.fna&oh=00_AYDgqXcoLPOx87S__39z0-ByidVgnCmRXBHdy9Z6pvYeXA&oe=6671D1C7" width="100%">
+    <br><h1 style="text-align: center; color:red">Website Chẩn đoán bệnh</h1><hr>
+    <table class="custom-table">
+        <colgroup>
+            <col style="background-color: rgb(5, 253, 233);">
+          </colgroup>
+        <tr><td style="margin-top: 10px;"><B> TRANG CHỦ </B></td>
+        <td rowspan="6">
+    <form id="diagnosisForm">
+        <div style="text-align: center;" > <b>Nhập triệu chứng, phân biệt bởi dấu phẩy:</b>
+         <input type="text" id="symptoms" required />
+        <button type="submit"><b>Chẩn đoán</b></button></div>
+    </form>
+    <div class="result" id="result"></div>
+
+<script>
+
+document.getElementById('diagnosisForm').onsubmit = function(event) {
+    event.preventDefault();
+    var symptomsInput = document.getElementById('symptoms').value;
+    var symptomsArray = symptomsInput.split(',').map(function(symptom) {
+        return symptom.trim();
+    });
+    var advice = document.getElementById('result');
+    var symptomsString = symptomsArray.join('+');
+    if (symptomsArray.length === 1) {
+        switch (symptomsArray[0]) {
+            case 'sốt':
+                advice.innerHTML = '<br>Khi bị sốt, việc lựa chọn thuốc phụ thuộc vào nguyên nhân và mức độ nghiêm trọng của tình trạng. Dưới đây là một số loại thuốc thường được sử dụng để giảm sốt:<br> <a href="https://www.vinmec.com/vi/thong-tin-duoc/su-dung-thuoc-toan/paracetamol-co-tac-dung-gi/"> Acetaminophen (còn gọi là Paracetamol) </a>: Hoạt động bằng cách tác động lên các khu vực não cảm nhận đau và điều chỉnh nhiệt độ cơ thể.<br> <a href="https://www.vinmec.com/vi/thong-tin-duoc/su-dung-thuoc-toan/thuoc-chong-viem-khong-steroid-nsaid-nhung-dieu-can-biet/"> NSAIDs (chống viêm không steroid)</a> như ibuprofen hoặc naproxen: Giảm đau và sốt bằng cách giảm các chất gây đau và điều chỉnh nhiệt độ cơ thể.<br> <a href="https://www.vinmec.com/vi/thong-tin-duoc/su-dung-thuoc-toan/cong-dung-thuoc-aspirin-325mg/"> Aspirin</a>: Có thể gây ra các vấn đề về đường tiêu hóa như khó tiêu và nguy cơ chảy máu, đặc biệt là đối với những người có rối loạn chảy máu. Aspirin không nên được sử dụng cho trẻ em và thanh thiếu niên do liên quan đến hội chứng Reye.<br> Để giảm khó chịu do sốt, bạn có thể sử dụng các loại thuốc như acetaminophen (Tylenol), ibuprofen (Advil), hoặc aspirin1. Tuy nhiên, hãy tuân theo hướng dẫn liều lượng trên nhãn và tránh sử dụng nhiều loại thuốc chứa acetaminophen cùng một lúc.<br> <b>Lưu ý</b>: Đây chỉ là thông tin chung và không thể thay thế cho lời khuyên y tế chuyên nghiệp. Bạn không nên tự ý sử dụng thuốc mà không có sự tư vấn của bác sĩ hoặc dược sĩ. Nếu sốt kéo dài hơn 2-3 ngày, sốt cao trên 39.4°C, hoặc có các triệu chứng nghiêm trọng khác, bạn nên thăm bác sĩ để được chẩn đoán và điều trị kịp thời.<br>';
+                break;
+                return;
+            case 'ho':
+                advice.innerHTML = '<br>Khi bị ho, việc sử dụng thuốc cần dựa trên nguyên nhân và mức độ nghiêm trọng của tình trạng. Dưới đây là một số loại thuốc thông thường có thể được sử dụng để giảm triệu chứng ho:<br> Thuốc ho không kê đơn: Các loại thuốc này có thể giúp giảm ho và làm dịu cổ họng. Chúng bao gồm các loại syrup ho hoặc viên ngậm có chứa thành phần như <a href="https://www.vinmec.com/vi/thong-tin-duoc/su-dung-thuoc-toan/thuoc-acetaminophen-va-dextromethorphan-la-gi/">dextromethorphan (giảm ho)</a> hoặc glycerin (làm dịu cổ họng):<br> <a href="https://www.vinmec.com/vi/thong-tin-duoc/su-dung-thuoc-toan/thuoc-expectorant-cong-dung-chi-dinh-va-luu-y-khi-dung/">Thuốc expectorant</a>: Như <a href="https://www.vinmec.com/vi/thong-tin-duoc/su-dung-thuoc-toan/guaifenesin-la-thuoc-gi/"> guaifenesin</a>, giúp làm loãng đờm và dễ dàng ho ra ngoài.<br> Thuốc ức chế ho: Như <a href="https://www.vinmec.com/vi/thong-tin-duoc/su-dung-thuoc-toan/cong-dung-thuoc-epfepara-codeine/"> codeine</a> hoặc <a href="https://www.vinmec.com/vi/thong-tin-duoc/su-dung-thuoc-toan/thuoc-acetaminophen-va-diphenhydramine-la-gi/">acetaminophen và diphenhydramine</a>, có thể được sử dụng trong trường hợp ho khan không sản xuất đờm.<br>Tuy nhiên, nếu ho là triệu chứng của một tình trạng y tế cụ thể như viêm phế quản, cảm lạnh, hoặc cúm, việc điều trị có thể cần đến sự can thiệp của bác sĩ. Trong trường hợp ho kéo dài hoặc có các triệu chứng nghiêm trọng khác, bạn nên thăm bác sĩ để được chẩn đoán và điều trị phù hợp.<br> <b>Lưu ý:</b> Đây chỉ là thông tin chung và không thể thay thế cho lời khuyên y tế chuyên nghiệp. Bạn không nên tự ý sử dụng thuốc mà không có sự tư vấn của bác sĩ hoặc dược sĩ.<br>';
+                break;
+                return;
+            default:
+                advice.innerHTML = '<br>Vui lòng nhập triệu chứng cụ thể hơn hoặc thăm bác sĩ để được tư vấn.<br>';
+        }
+    } else {
+        switch (symptomsString) {
+        case 'sốt+ho':
+            advice.innerHTML = '<br>Sốt và ho có thể là triệu chứng của nhiều tình trạng sức khỏe khác nhau, từ cảm lạnh thông thường đến các bệnh nhiễm trùng nghiêm trọng hơn như viêm phổi. Để xác định chính xác nguyên nhân và điều trị phù hợp, bạn nên tham khảo ý kiến của bác sĩ. Tuy nhiên, dưới đây là một số loại thuốc thường được sử dụng để giảm triệu chứng sốt và ho: <br><br>Thuốc giảm đau, hạ sốt: Bạn có thể dùng các loại thuốc giảm đau không kê đơn, như <a href="https://www.vinmec.com/vi/thong-tin-duoc/su-dung-thuoc-toan/paracetamol-co-tac-dung-gi/"> Acetaminophen (còn gọi là Paracetamol)</a> hoặc ibuprofen để làm giảm thân nhiệt và cải thiện cảm giác đau.<br>Thuốc giảm ho: Có tác dụng ức chế các dây thần kinh và trung khu gây ho, từ đó làm giảm phản xạ ho.<br>Thuốc kháng viêm: Hỗ trợ điều trị những vùng tế bào bị viêm nhiễm.<br>Thuốc kháng sinh: Trị các vi khuẩn, virus gây bệnh. Tuy nhiên, chỉ nên sử dụng khi có chỉ định của bác sĩ vì không phải mọi trường hợp ho và sốt đều do vi khuẩn.<br><b>Lưu ý:</b> Không nên tự ý sử dụng thuốc kháng sinh mà không có sự tư vấn của bác sĩ vì có thể gây ra tác dụng phụ hoặc kháng thuốc. Nếu triệu chứng kéo dài hoặc nghiêm trọng, hãy tìm kiếm sự chăm sóc y tế ngay lập tức. Đây chỉ là thông tin chung và không thể thay thế cho lời khuyên của bác sĩ. Hãy liên hệ với bác sĩ của bạn để nhận được sự chăm sóc y tế phù hợp.<br>';
+            break;
+            return;
+        case 'sốt+đau đầu':
+            advice.innerHTML = '<br>Sốt kèm theo đau đầu có thể là dấu hiệu của nhiễm trùng. Hãy thăm bác sĩ.<br>';
+            break;
+            return;
+        default:
+            advice.innerHTML = '<br>Vui lòng nhập triệu chứng cụ thể hơn hoặc thăm bác sĩ để được tư vấn.<br>';
+    }      
+    }
+};
+</script></td>
+</tr>
+<tr><td style="margin: auto; padding: auto;">Trang thông tin</td></tr>
+<tr><td style="margin: auto; padding: auto;"><a href="https://www.pharmacity.vn/" style="color: black;">Sản phẩm thuốc</a></td></tr>
+ <tr><td style="margin: auto; padding: auto; "><a href="https://moh.gov.vn/" style="color: black;"> Thông tin về y tế</a></td></tr> 
+ <tr><td style="margin: auto; padding: auto;">Mẹo vặt y tế</td></tr>  
+ <tr><td style="margin: auto; padding: auto;"><a href="gioithieubanthan.html" style="color: black;">Liên hệ</a></td></tr>
+</table>
+</body>
+</html>
